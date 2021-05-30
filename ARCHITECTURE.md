@@ -18,7 +18,9 @@ A Collection is analogous to a directory or folder. It contains one or more Task
 
 ## Successes, Failures, Warnings, Timeouts, and Keep-Alives
 
-Tasks and Steps have statuses. If a Step fails, by default, its parent Task will also fail. For reporting flexibility purposes, a Warning status is possible as well. By default, every Step has a timeout, which will mark the Step as failed if it does not complete before the timeout. The timeout value can be changed or even disabled (this is not recommended). For Asynchronous Steps, the provided API endpoint can be used to tell WFNG that the work is still proceeding (a keep-alive message). Asynchronous Steps have a normal Timeout, which can be reset by the keep-alive messages, as well as a fail-safe timeout, which will still mark the Step as failed regardless of keep-alive messages (if enabled).
+Tasks and Steps have statuses. If a Step fails, by default, its parent Task will also fail. For reporting flexibility purposes, a Warning status is possible as well. If more granularity is needed for processing, the data sharing capability allows arbitrary data to be passed between Steps.
+
+By default, every Step has a timeout, which will mark the Step as failed if it does not complete before the timeout. The timeout value can be changed or even disabled (this is not recommended). For Asynchronous Steps, the provided API endpoint can be used to tell WFNG that the work is still proceeding (a keep-alive message). Asynchronous Steps have a normal Timeout, which can be reset by the keep-alive messages, as well as a fail-safe timeout, which will still mark the Step as failed regardless of keep-alive messages (if enabled).
 
 # The Concept of a Step
 

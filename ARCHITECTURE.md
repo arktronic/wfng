@@ -1,6 +1,6 @@
 # Concepts
 
-WFNG orchestrates workflows. The hierarchy of workflow parts is: Process --> Task --> Step. A Process is a loose collection of unordered Tasks. A Task is an ordered collection of Steps.
+WFNG orchestrates workflows. The hierarchy of workflow parts is: Collection --> Task --> Step. A Collection is a loose set of unordered Tasks. A Task is an ordered list of Steps.
 
 ## Tasks
 
@@ -12,9 +12,9 @@ A Step may be one of several types: Starter, Synchronous, or Asynchronous. The i
 
 Starter Steps have an optional scripting component, which aids in determining whether to proceed with starting the Task. Synchronous and Asynchronous Steps have a mandatory scripting component that is essentially the definition of the work for the Step.
 
-## Processes
+## Collections
 
-A Process is analogous to a directory or folder. It contains one or more Tasks, and it allows for logical grouping of Tasks. Processes are an optional component of workflows; there is an implicit "default" Process always present for ungrouped Tasks.
+A Collection is analogous to a directory or folder. It contains one or more Tasks, and it allows for logical grouping of Tasks. Collections are an optional component of workflows; there is an implicit "default" Collection always present for ungrouped Tasks.
 
 ## Successes, Failures, Warnings, Timeouts, and Keep-Alives
 
@@ -40,7 +40,7 @@ For scripting and visualization purposes, every Step has a single entry point. A
 
 Data can be shared between calling APIs, Steps, and Tasks. A Starter Step can read data from its entry point, which may include API information or arbitrary data. Other Steps can similarly read data from their entry points. Step exit points allow the passing of arbitrary data to the next Step or to other Tasks.
 
-For more advanced scenarios, arbitrary data can be persisted on a per-Step, per-Task, and per-Process basis, as well as per instances of running Tasks.
+For more advanced scenarios, arbitrary data can be persisted on a per-Step or per-Task basis, as well as per instances of running Tasks.
 
 # Security
 

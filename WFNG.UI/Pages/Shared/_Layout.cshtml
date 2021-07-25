@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WFNG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/pure-min.css" integrity="sha512-zGyYxJ4OrTxpKh6piIz2WcdSrGTDUEe3lDNhuFf0hPQzU3evbD4LKDD5GKjdlbSiFQ/vrkSFpHMc6RLgaKNWrA==" crossorigin="anonymous" referrer-policy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/2.0.5/grids-responsive.min.css" integrity="sha512-YTJqX5LUbN0Ay2lvd/pRuVJgiJYvIpXURhHempiYi27q6IDTlLiKNaiAvxsT8Vbyat3d6noDM7+F6p3zhILuTQ==" crossorigin="anonymous" referrer-policy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrer-policy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="/node_modules/systemjs/dist/s.min.js"></script>
+    <script src="/node_modules/systemjs/dist/extras/amd.min.js"></script>
+    <script src="/node_modules/uce/new.js"></script>
+    @*<script type="module" src="~/js/components/my-element.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+
+<header class="header">
+    <nav class="pure-menu pure-menu-horizontal">
+        <a asp-area="" asp-page="/Index" class="pure-menu-heading">WFNG</a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a asp-area="" asp-page="/Index" class="pure-menu-link">🏠 Home</a></li>
+            <li class="pure-menu-item"><a asp-area="" asp-page="/Settings" class="pure-menu-link">🛠 Settings</a></li>
+
+            @await RenderSectionAsync("TopLinks", required: false)
+        </ul>
+    </nav>
+</header>
+<main role="main">
+    @RenderBody()
+</main>
+
+<footer>
+    WFNG
+</footer>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

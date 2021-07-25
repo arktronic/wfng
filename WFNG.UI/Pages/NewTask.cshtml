@@ -1,0 +1,24 @@
+﻿@page
+@model WFNG.UI.Pages.NewTaskModel
+@{
+    ViewData["Title"] = "New Task";
+}
+
+<h1>Create a new task</h1>
+
+<section class="new-task-actions">
+    <div class="new-step-dragger">New Step</div>
+    Add a step:
+    <task-step type="sync" draggable="true" visual-dragger-selector=".new-step-dragger"></task-step>
+    <task-step type="async" draggable="true" visual-dragger-selector=".new-step-dragger"></task-step>
+</section>
+
+<section class="new-task-container">
+    <task-editor>
+        <task-step x="0" y="20" type="starter"></task-step>
+    </task-editor>
+</section>
+
+@section Scripts {
+    <step-editor-modal></step-editor-modal>
+}

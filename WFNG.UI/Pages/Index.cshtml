@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+@section TopLinks {
+    <li class="pure-menu-item"><div class="pure-menu-heading">|</div></li>
+    <li class="pure-menu-item"><a asp-area="" asp-page="/NewTask" class="pure-menu-link">New Task</a></li>
+    <li class="pure-menu-item"><a asp-area="" asp-page="/NewCollection" class="pure-menu-link">New Collection</a></li>
+}
+
+<h1>Hi! Welcome to WFNG.</h1>
+<h3>Get started by creating a new task, or check out the settings to configure WFNG.</h3>
+<my-element enlighten="true"></my-element>
+<br />
+
+<partial name="_TaskCard" model='new { Status = "in-progress", Count = 1, Title = "fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa fdsa", Description = "asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf" }' />
+<partial name="_TaskCard" model='new { Status = "in-progress warning", Count = 24, Title = "my title" }' />
+<partial name="_TaskCard" model='new { Status = "in-progress error", Count = 3 }' />
+<partial name="_TaskCard" model='new { Status = "success" }' />
+<partial name="_TaskCard" model='new { Status = "warning" }' />
+<partial name="_TaskCard" model='new { Status = "error" }' />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />
+<partial name="_TaskCard" />

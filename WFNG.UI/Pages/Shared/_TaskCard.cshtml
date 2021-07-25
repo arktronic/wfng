@@ -1,0 +1,40 @@
+﻿@{
+    dynamic m = Utility.Dynamize(Model);
+    string title = m?.Title ?? "(Untitled)";
+    string description = m?.Description ?? "(No description)";
+    string status = m?.Status ?? "";
+    int count = m?.Count ?? 0;
+}
+
+<article class="task-card">
+    <div class="top-section">
+        <h1>@title</h1>
+        <h2 class="spinner @status">@(count < 1 ? "\u00a0" : count.ToString())</h2>
+    </div>
+    <hr />
+    <p class="middle-section">
+        @description
+    </p>
+    <hr />
+    <div class="bottom-section">
+        <a href="">
+            <div class="icon fa fa-sun"></div>
+            <div class="name">Action 1</div>
+        </a>
+        <div class="v-break"></div>
+        <a href="">
+            <div class="icon fa fa-sun"></div>
+            <div class="name">Action 2</div>
+        </a>
+        <div class="v-break"></div>
+        <a href="">
+            <div class="icon fa fa-sun"></div>
+            <div class="name">Action 3</div>
+        </a>
+        <div class="v-break"></div>
+        <a href="">
+            <div class="icon fa fa-sun"></div>
+            <div class="name">Action 4</div>
+        </a>
+    </div>
+</article>

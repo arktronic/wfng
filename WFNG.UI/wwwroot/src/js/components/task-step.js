@@ -126,5 +126,19 @@
         this._stepData.failsafeTimeout = value.failsafeTimeout;
         this._stepData.script = value.script;
         this._stepData.nextStep = value.nextStep;
+    },
+    get sourcePoint() {
+        const rect = this.getBoundingClientRect();
+        return {
+            x: Number(this._stepData.x) + rect.width,
+            y: Number(this._stepData.y) + (rect.height / 2)
+        };
+    },
+    get targetPoint() {
+        const rect = this.getBoundingClientRect();
+        return {
+            x: Number(this._stepData.x),
+            y: Number(this._stepData.y) + (rect.height / 2)
+        };
     }
 });

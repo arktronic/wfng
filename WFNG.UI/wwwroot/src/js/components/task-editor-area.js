@@ -40,6 +40,7 @@
         
         this.dragTarget.setAttribute('x', newX);
         this.dragTarget.setAttribute('y', newY);
+        this.drawArrows();
     },
     onMouseUp(e) {
         this.dragging = false;
@@ -100,6 +101,19 @@
             el.setAttribute('y', s.y);
             this.appendChild(el);
             el.stepData = s;
+        });
+    },
+    drawArrows() {
+        const arrows = this.shadowRoot.querySelector('task-editor-arrows');
+        arrows.clear();
+        this.querySelectorAll('task-step').forEach((currentStep) => {
+            if (!currentStep.stepData.nextStep) return;
+            const targetStep = this.querySelector(`task-step[step-id="${currentStep.stepData.nextStep}"]`);
+            if (!targetStep) return;
+            
+            arrows.showArrow(
+                currentStep.sourcePoint.x, currentStep.sourcePoint.y,
+                targetStep.targetPoint.x, targetStep.targetPoint.y);
         });
     }
 });

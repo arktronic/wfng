@@ -12,24 +12,29 @@
             <section id="container">
             </section>
         `;
-        var stage = new Konva.Stage({
+        const stage = new Konva.Stage({
             container: this.shadowRoot.querySelector('section'),
             width: this.shadowRoot.querySelector('section').clientWidth,
             height: this.shadowRoot.querySelector('section').clientHeight
         });
-        var layer = new Konva.Layer();
+        this._layer = new Konva.Layer();
+        stage.add(this._layer);
+    },
+    showArrow(x1, y1, x2, y2) {
         var arrow = new Konva.Arrow({
-            x: 140,
-            y: 40,
-            points: [0, 0, 60, 20, 40, 80],
-            pointerLength: 20,
-            pointerWidth: 20,
-            fill: 'black',
-            stroke: 'black',
-            strokeWidth: 4,
+            x: 0,
+            y: 0,
+            points: [x1, y1, x1 + 50, y1, x2 - 52, y2, x2 - 2, y2],
+            pointerLength: 10,
+            pointerWidth: 10,
+            fill: '#00000000',
+            stroke: '#00000055',
+            strokeWidth: 3,
             tension: 0.5,
         });
-        layer.add(arrow);
-        stage.add(layer);
+        this._layer.add(arrow);
+    },
+    clear() {
+        this._layer.destroyChildren();
     }
 });

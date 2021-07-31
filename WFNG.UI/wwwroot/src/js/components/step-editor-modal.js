@@ -96,27 +96,29 @@
         const ev = new Event('show');
         this.shadowRoot.querySelector('modal-screen').dispatchEvent(ev);
     },
-    onModalNotifyGeneric(e) {
+    hide() {
+        const ev = new Event('hide');
+        this.shadowRoot.querySelector('modal-screen').dispatchEvent(ev);
+    },
+    onModalNotify(e) {
         e.preventDefault();
         
         switch(e.detail.name) {
+            case 'hide-request':
+                this.hide();
+                break;
             case 'save':
                 const data = {};
                 this.shadowRoot
                     .querySelectorAll('modal-screen *[data-field]')
                     .forEach(f => data[f.getAttribute('data-field')] = f.value);
                 this.stepElement.stepData = data;
-                this.onModalHideRequest(e);
+                this.hide();
                 break;
             case 'hiding':
                 break;
             default:
                 console.log('Unknown generic notification:', e.detail);
         }
-    },
-    onModalHideRequest(e) {
-        e.preventDefault();
-        const ev = new Event('hide');
-        this.shadowRoot.querySelector('modal-screen').dispatchEvent(ev);
     }
 });

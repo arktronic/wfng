@@ -2,7 +2,6 @@
     attachShadow: { mode: 'open' },
     init() {
         this._boundGlobalKeyDown = (e) => { if (e.keyCode === 27) { this.hide(); } };
-        this._hideRequestEvent = new CustomEvent('ModalHideRequest', { bubbles: true, cancelable: true })
         
         this.render();
 
@@ -15,7 +14,7 @@
         this.shadowRoot.host.style.animation = 'fadeInFromNone 0.5s both ease-out';
     },
     sendHideRequest() {
-        this.dispatchEvent(this._hideRequestEvent);
+        this.notify('hide-request');
     },
     onHide() {
         this.notify('hiding');
@@ -27,7 +26,7 @@
         }
     },
     notify(name, data) {
-        const ev = new CustomEvent('ModalNotifyGeneric', { bubbles: true, cancelable: true, detail: { name: name, data: data  } });
+        const ev = new CustomEvent('ModalNotify', { bubbles: true, cancelable: true, detail: { name: name, data: data  } });
         this.dispatchEvent(ev);
     },
     render() {

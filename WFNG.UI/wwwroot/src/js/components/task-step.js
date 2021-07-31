@@ -7,7 +7,8 @@
             cron: '',
             timeout: '',
             failsafeTimeout: '',
-            script: ''
+            script: '',
+            nextStep: ''
         };
     },
     connected() {
@@ -124,5 +125,6 @@
         this._stepData.timeout = value.timeout;
         this._stepData.failsafeTimeout = value.failsafeTimeout;
         this._stepData.script = value.script;
+        this._stepData.nextStep = value.nextStep;
     }
 });

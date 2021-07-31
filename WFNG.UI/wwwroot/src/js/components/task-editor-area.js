@@ -9,12 +9,13 @@
         this.html`
             <style>
                 .task-area {
-                    height: 1000rem;
+                    height: 300rem;
                     position: relative;
-                    width: 1000rem;
+                    width: 300rem;
                 }
             </style>
             <section class="task-area">
+                <task-editor-arrows></task-editor-arrows>
                 <slot></slot>
             </section>
         `;
@@ -74,8 +75,8 @@
             newStep.setAttribute('type', dropData.type);
             this.appendChild(newStep);
         }
-        catch (e) {
-            console.log('Unable to accept drop');
+        catch (er) {
+            console.log('Unable to accept drop', er);
         }
         
         return false;

@@ -69,6 +69,12 @@
                             <br />
                             <textarea data-field="script"></textarea>
                         </p>
+                        
+                        <p>
+                            <label>Next step (optional)</label>
+                            <br />
+                            <input type="text" data-field="nextStep" value="${this.stepData.nextStep}" />
+                        </p>
 
                         <p>
                             <label>External tasks</label>

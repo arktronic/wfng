@@ -3,20 +3,22 @@
     observedAttributes: ['x', 'y'],
     init: function () {
         this.customDraggable = !this.getAttribute('draggable');
-    },
-    connected() {
-        if (!this.getAttribute('step-id')) {
-            this.setAttribute('step-id', window.generateUuid());
-        }
-        
         this._stepData = {
-            id: this.getAttribute('step-id'),
-            type: this.getAttribute('type'),
             cron: '',
             timeout: '',
             failsafeTimeout: '',
             script: ''
         };
+    },
+    connected() {
+        if (!this.getAttribute('step-id')) {
+            this.setAttribute('step-id', window.generateUuid());
+        }
+
+        this._stepData.id = this.getAttribute('step-id');
+        this._stepData.type = this.getAttribute('type');
+        this._stepData.x = this.getAttribute('x');
+        this._stepData.y = this.getAttribute('y');
 
         this.render();
     },
@@ -83,6 +85,8 @@
     },
     attributeChanged(name, oldValue, newValue) {
         this.restyle();
+        this._stepData.x = this.getAttribute('x');
+        this._stepData.y = this.getAttribute('y');
     },
     restyle() {
         if (!this.customDraggable) {
@@ -112,6 +116,7 @@
     },
     set stepData(value) {
         if (this._stepData.id !== value.id || this._stepData.type !== value.type) {
+            console.log('Ignoring invalid stepData assignment!');
             return;
         }
         

@@ -1,7 +1,7 @@
 ﻿uce.define('modal-screen', {
     attachShadow: { mode: 'open' },
     init() {
-        this._boundGlobalKeyDown = (e) => { if (e.keyCode === 27) { this.hide(); } };
+        this._boundGlobalKeyDown = (e) => { if (e.keyCode === 27) { this.sendHideRequest(); } };
         
         this.render();
 

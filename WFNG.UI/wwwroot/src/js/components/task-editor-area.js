@@ -85,6 +85,20 @@
         this.querySelectorAll('task-step').forEach((s) => {
             taskData.push(s.stepData);
         });
-        console.log(taskData);
+        return JSON.stringify(taskData);
+    },
+    deserialize(taskDataString) {
+        this.innerHTML = '';
+        
+        const taskData = JSON.parse(taskDataString);
+        taskData.forEach(s => {
+            const el = document.createElement('task-step');
+            el.setAttribute('type', s.type);
+            el.setAttribute('step-id', s.id);
+            el.setAttribute('x', s.x);
+            el.setAttribute('y', s.y);
+            this.appendChild(el);
+            el.stepData = s;
+        });
     }
 });

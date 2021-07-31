@@ -5,6 +5,8 @@
 
 .idea/
 *.tsbuildinfo
+WFNG.UI/wwwroot/css/
+WFNG.UI/wwwroot/js/
 
 # User-specific files
 *.rsuser

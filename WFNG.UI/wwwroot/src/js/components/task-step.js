@@ -27,25 +27,23 @@
         let iconClass, description;
         switch(this.getAttribute('type')) {
             case 'sync':
-                iconClass = 'fas fa-sync-alt';
+                iconClass = 'task-step bg sync';
                 description = 'Synchronous';
                 break;
             case 'async':
-                iconClass = 'fas fa-exchange-alt';
+                iconClass = 'task-step bg async';
                 description = 'Asynchronous';
                 break;
             case 'starter':
-                iconClass = 'fa fa-play';
+                iconClass = 'task-step bg starter';
                 description = 'Starter';
         }
         
         this.html`
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-                  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-                  crossorigin="anonymous" referrer-policy="no-referrer"/>
             <style>
                 :host {
                     display: inline-block;
+                    position: relative;
                 }
                 .container {
                     align-items: center;
@@ -68,27 +66,43 @@
                 .description {
                     user-select: none;
                 }
-
-                i {
-                    color: #08ee088a;
-                    font-size: 2rem;
-                    position: absolute;
-                    z-index: -1;
-                }
                 
                 .connector {
                     position: absolute;
-                    top: 10px;
+                    top: 12px;
                     left: 140px;
-                    background-color: #00000033;
-                    border-radius: 2px;
-                    padding: 0 4px 2px;
+                    border: 1px solid #00000055;
+                    border-radius: 9999px;
+                    padding: 0 2px 2px;
                     cursor: pointer;
                     user-select: none;
+                    font-size: 8pt;
+                    
+                }
+                
+                .task-step.bg {
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    z-index: -1;
+                }
+                .bg.sync {
+                    background-image: url('img/sync.svg');
+                }
+                .bg.async {
+                    background-image: url('img/async.svg');
+                }
+                .bg.starter {
+                    background-image: url('img/starter.svg');
                 }
             </style>
             <div class="container">
-                <i class="${iconClass}"/>
+                <div class="${iconClass}"></div>
                 <div class="description">${description}</div>
             </div>
             <div class="connector source-initiator">&rarr;</div>

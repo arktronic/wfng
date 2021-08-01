@@ -18,11 +18,14 @@
 
 <header class="header">
     <nav class="pure-menu pure-menu-horizontal">
-        <a asp-area="" asp-page="/Index" class="pure-menu-heading">WFNG</a>
+        <a asp-area="" asp-page="/Index" class="pure-menu-heading">
+            <img src="img/wfng-icon.svg" alt="WFNG icon" />
+            <img src="img/wfng-text-logo.svg" alt="WFNG" />
+        </a>
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a asp-area="" asp-page="/Index" class="pure-menu-link">🏠 Home</a></li>
-            <li class="pure-menu-item"><a asp-area="" asp-page="/Settings" class="pure-menu-link">🛠 Settings</a></li>
+            <li class="pure-menu-item"><a asp-area="" asp-page="/Index" class="pure-menu-link"><img src="img/home.svg" alt="Home" /> Home</a></li>
+            <li class="pure-menu-item"><a asp-area="" asp-page="/Settings" class="pure-menu-link"><img src="img/settings.svg" alt="Settings" /> Settings</a></li>
 
             @await RenderSectionAsync("TopLinks", required: false)
         </ul>

@@ -21,7 +21,7 @@
         stage.add(this._layer);
     },
     showArrow(x1, y1, x2, y2) {
-        x2 = x2 - 2;
+        x2 = x2 - 2.5;
         
         var arrow = new Konva.Arrow({
             x: 0,

@@ -75,11 +75,18 @@
                     position: absolute;
                     z-index: -1;
                 }
+                
+                .connector {
+                    position: absolute;
+                    top: 10px;
+                    left: 140px;
+                }
             </style>
             <div class="container">
                 <i class="${iconClass}"/>
                 <div class="description">${description}</div>
             </div>
+            <div class="connector">&rarr;</div>
         `;
         
         this.restyle();
@@ -130,7 +137,7 @@
     get sourcePoint() {
         const rect = this.getBoundingClientRect();
         return {
-            x: Number(this._stepData.x) + rect.width,
+            x: Number(this._stepData.x) + 140,
             y: Number(this._stepData.y) + (rect.height / 2)
         };
     },

@@ -21,10 +21,12 @@
         stage.add(this._layer);
     },
     showArrow(x1, y1, x2, y2) {
+        x2 = x2 - 2;
+        
         var arrow = new Konva.Arrow({
             x: 0,
             y: 0,
-            points: [x1, y1, x1 + 50, y1, x2 - 52, y2, x2 - 2, y2],
+            points: [x1, y1, x1 + 50, (y1 * 3 + y2) / 4, x2 - 50, (y2 * 3 + y1) / 4, x2, y2],
             pointerLength: 10,
             pointerWidth: 10,
             fill: '#00000000',

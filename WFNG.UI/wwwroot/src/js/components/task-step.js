@@ -2,7 +2,7 @@
     attachShadow: { mode: 'open' },
     observedAttributes: ['x', 'y'],
     init: function () {
-        this.customDraggable = !this.getAttribute('draggable');
+        this._customDraggable = !this.getAttribute('draggable');
         this._stepData = {
             cron: '',
             timeout: '',
@@ -80,13 +80,18 @@
                     position: absolute;
                     top: 10px;
                     left: 140px;
+                    background-color: #00000033;
+                    border-radius: 2px;
+                    padding: 0 4px 2px;
+                    cursor: pointer;
+                    user-select: none;
                 }
             </style>
             <div class="container">
                 <i class="${iconClass}"/>
                 <div class="description">${description}</div>
             </div>
-            <div class="connector">&rarr;</div>
+            <div class="connector source-initiator">&rarr;</div>
         `;
         
         this.restyle();
@@ -97,9 +102,16 @@
         this._stepData.y = this.getAttribute('y');
     },
     restyle() {
-        if (!this.customDraggable) {
+        if (!this._customDraggable) {
+            this.shadowRoot.querySelectorAll('.connector')
+                .forEach((c) => c.style.display = 'none');
             return;
         }
+        
+        const hasNextStep = (this._stepData.nextStep !== null && this._stepData.nextStep !== undefined && this._stepData.nextStep.length > 0);
+        
+        this.shadowRoot.querySelectorAll('.source-initiator')
+            .forEach((si) => si.style.display = (hasNextStep ? 'none' : 'unset'));
         
         this.setAttribute('style', `position:absolute;left:${this.getAttribute('x')}px;top:${this.getAttribute('y')}px;`);
     },
@@ -110,7 +122,7 @@
         return true;
     },
     onDblClick(e) {
-        if (!this.customDraggable) {
+        if (!this._customDraggable) {
             return;
         }
 
@@ -118,6 +130,16 @@
     },
     editStep() {
         document.querySelector('step-editor-modal').show(this);
+    },
+    shouldCustomDrag(e) {
+        const path = e.composedPath();
+        const pathPointsToConnector = (path && path[0].classList.contains('connector'));
+        return (this._customDraggable && !pathPointsToConnector);
+    },
+    shouldInitiateConnection(e) {
+        const path = e.composedPath();
+        const pathPointsToConnector = (path && path[0].classList.contains('source-initiator'));
+        return (this._customDraggable && pathPointsToConnector);
     },
     get stepData() {
         return JSON.parse(JSON.stringify(this._stepData));
@@ -133,6 +155,10 @@
         this._stepData.failsafeTimeout = value.failsafeTimeout;
         this._stepData.script = value.script;
         this._stepData.nextStep = value.nextStep;
+        
+        this.restyle();
+        const ev = new Event('taskUpdated');
+        this.parentElement.dispatchEvent(ev);
     },
     get sourcePoint() {
         const rect = this.getBoundingClientRect();
@@ -147,5 +173,8 @@
             x: Number(this._stepData.x),
             y: Number(this._stepData.y) + (rect.height / 2)
         };
-    }
+    },
+    get isConnectableTarget() {
+        return this._stepData.type !== 'starter';
+    },
 });

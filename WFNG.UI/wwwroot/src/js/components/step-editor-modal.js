@@ -110,7 +110,7 @@
         e.preventDefault();
         
         switch(e.detail.name) {
-            case 'hide-request':
+            case 'hideRequest':
                 this.hide();
                 break;
             case 'save':

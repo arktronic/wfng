@@ -2,6 +2,7 @@
     attachShadow: { mode: 'open' },
     init: function () {
         this.dragging = false;
+        this.connecting = false;
 
         this.render();
     },
@@ -21,29 +22,42 @@
         `;
     },
     onMouseDown(e) {
-        if (e.target.customDraggable !== true) return;
-        
-        this.dragging = true;
-        this.dragTarget = e.target;
-        this.dragTargetInitX = Number(e.target.getAttribute('x'));
-        this.dragTargetInitY = Number(e.target.getAttribute('y'));
-        this.dragInitMouseX = e.clientX;
-        this.dragInitMouseY = e.clientY;
+        if (e.target.shouldCustomDrag !== undefined && e.target.shouldCustomDrag(e)) {
+            this.dragging = true;
+            this.dragTarget = e.target;
+            this.dragTargetInitX = Number(e.target.getAttribute('x'));
+            this.dragTargetInitY = Number(e.target.getAttribute('y'));
+            this.dragInitMouseX = e.clientX;
+            this.dragInitMouseY = e.clientY;
+        }
+        else if (e.target.shouldInitiateConnection !== undefined && e.target.shouldInitiateConnection(e)) {
+            this.connecting = true;
+            this.connectionSource = e.target;
+        }
     },
     onMouseMove(e) {
-        if (!this.dragging) return;
-        
-        let newX = this.dragTargetInitX + e.clientX - this.dragInitMouseX;
-        if (newX < 0) newX = 0;
-        let newY = this.dragTargetInitY + e.clientY - this.dragInitMouseY;
-        if (newY < 0) newY = 0;
-        
-        this.dragTarget.setAttribute('x', newX);
-        this.dragTarget.setAttribute('y', newY);
-        this.drawArrows();
+        if (this.dragging) {
+            let newX = this.dragTargetInitX + e.clientX - this.dragInitMouseX;
+            if (newX < 0) newX = 0;
+            let newY = this.dragTargetInitY + e.clientY - this.dragInitMouseY;
+            if (newY < 0) newY = 0;
+
+            this.dragTarget.setAttribute('x', newX);
+            this.dragTarget.setAttribute('y', newY);
+        }
+        this.drawArrows(e);
     },
     onMouseUp(e) {
         this.dragging = false;
+        
+        if (this.connecting) {
+            this.connecting = false;
+            if (e.target.isConnectableTarget === true) {
+                const stepData = this.connectionSource.stepData;
+                stepData.nextStep = e.target.stepData.id;
+                this.connectionSource.stepData = stepData;
+            }
+        }
     },
     onMouseLeave(e) {
         this.dragging = false;
@@ -82,6 +96,9 @@
         
         return false;
     },
+    onTaskUpdated(e) {
+        this.drawArrows(e);
+    },
     serialize() {
         const taskData = [];
         this.querySelectorAll('task-step').forEach((s) => {
@@ -103,7 +120,7 @@
             el.stepData = s;
         });
     },
-    drawArrows() {
+    drawArrows(e) {
         const arrows = this.shadowRoot.querySelector('task-editor-arrows');
         arrows.clear();
         this.querySelectorAll('task-step').forEach((currentStep) => {
@@ -115,5 +132,12 @@
                 currentStep.sourcePoint.x, currentStep.sourcePoint.y,
                 targetStep.targetPoint.x, targetStep.targetPoint.y);
         });
+        
+        if (this.connecting) {
+            const rect = this.getBoundingClientRect();
+            arrows.showArrow(
+                this.connectionSource.sourcePoint.x, this.connectionSource.sourcePoint.y,
+                e.clientX - rect.x, e.clientY - rect.y);
+        }
     }
 });

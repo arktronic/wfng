@@ -14,7 +14,7 @@
         this.shadowRoot.host.style.animation = 'fadeInFromNone 0.5s both ease-out';
     },
     sendHideRequest() {
-        this.notify('hide-request');
+        this.notify('hideRequest');
     },
     onHide() {
         this.notify('hiding');

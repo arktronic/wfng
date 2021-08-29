@@ -29,8 +29,8 @@
             points: [x1, y1, x1 + 50, (y1 * 3 + y2) / 4, x2 - 50, (y2 * 3 + y1) / 4, x2, y2],
             pointerLength: 10,
             pointerWidth: 10,
-            fill: '#00000000',
-            stroke: '#00000055',
+            fill: '#455A66',
+            stroke: '#455A66',
             strokeWidth: 3,
             tension: 0.5,
         });

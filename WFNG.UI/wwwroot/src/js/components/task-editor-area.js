@@ -13,6 +13,7 @@
                     height: 300rem;
                     position: relative;
                     width: 300rem;
+                    background-color: #F5F5F5;
                 }
             </style>
             <section class="task-area">

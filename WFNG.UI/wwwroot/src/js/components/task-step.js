@@ -47,8 +47,8 @@
                 }
                 .container {
                     align-items: center;
-                    background-color: rgba(0, 0, 0, 0.08);
-                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    background-color: #FFFFFF;
+                    border: 1px solid #BBBBBB;
                     border-radius: 6px;
                     cursor: grab;
                     box-sizing: border-box;
@@ -65,31 +65,32 @@
 
                 .description {
                     user-select: none;
+                    padding-left: 32px;
+                    width: 100%;
                 }
                 
                 .connector {
                     position: absolute;
                     top: 12px;
                     left: 140px;
-                    border: 1px solid #00000055;
+                    border: 1px solid #455A66;
                     border-radius: 9999px;
                     padding: 0 2px 2px;
                     cursor: pointer;
                     user-select: none;
                     font-size: 8pt;
-                    
                 }
                 
                 .task-step.bg {
-                    background-position: center;
+                    background-position: left;
                     background-repeat: no-repeat;
                     background-size: contain;
                     height: 100%;
-                    width: 100%;
+                    width: 28px;
                     position: absolute;
-                    left: 0;
+                    left: 6px;
                     top: 0;
-                    z-index: -1;
+                    pointer-events: none;
                 }
                 .bg.sync {
                     background-image: url('img/sync.svg');

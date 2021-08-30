@@ -65,20 +65,20 @@
 
                 .description {
                     user-select: none;
-                    padding-left: 32px;
+                    padding-left: 28px;
                     width: 100%;
                 }
                 
                 .connector {
                     position: absolute;
-                    top: 12px;
+                    top: 14px;
                     left: 140px;
                     border: 1px solid #455A66;
                     border-radius: 9999px;
-                    padding: 0 2px 2px;
+                    padding: 1px 2px 0 2px;
                     cursor: pointer;
                     user-select: none;
-                    font-size: 8pt;
+                    font-size: 7pt;
                 }
                 
                 .task-step.bg {
@@ -86,7 +86,7 @@
                     background-repeat: no-repeat;
                     background-size: contain;
                     height: 100%;
-                    width: 28px;
+                    width: 24px;
                     position: absolute;
                     left: 6px;
                     top: 0;
@@ -106,7 +106,7 @@
                 <div class="${iconClass}"></div>
                 <div class="description">${description}</div>
             </div>
-            <div class="connector source-initiator">&rarr;</div>
+            <div class="connector source-initiator">⮞</div>
         `;
         
         this.restyle();

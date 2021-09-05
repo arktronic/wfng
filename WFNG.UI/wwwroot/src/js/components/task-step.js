@@ -67,6 +67,8 @@
                     user-select: none;
                     padding-left: 28px;
                     width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 
                 .connector {

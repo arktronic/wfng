@@ -73,12 +73,11 @@
                     position: absolute;
                     top: 14px;
                     left: 140px;
-                    border: 1px solid #455A66;
+                    border: 2px solid #BBBBBB;
                     border-radius: 9999px;
-                    padding: 1px 2px 0 2px;
+                    padding: 5px;
                     cursor: pointer;
                     user-select: none;
-                    font-size: 7pt;
                 }
                 
                 .task-step.bg {
@@ -106,7 +105,7 @@
                 <div class="${iconClass}"></div>
                 <div class="description">${description}</div>
             </div>
-            <div class="connector source-initiator">⮞</div>
+            <div class="connector source-initiator"></div>
         `;
         
         this.restyle();

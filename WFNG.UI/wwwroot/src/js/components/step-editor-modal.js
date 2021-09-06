@@ -11,28 +11,40 @@
     render() {
         this.html``;
         this.html`
-            <modal-screen height="50%" width="40rem" background="rgba(0,0,0,0)">
+            <modal-screen height="70%" width="50rem" background="rgba(0,0,0,0)">
                 <style>
                     .step-editor-container {
                         box-sizing: border-box;
                         display: block;
                         height: 100%;
                         width: 100%;
-                        padding: 4px;
+                        padding: 12px 4px;
                         background-color: #fff;
                         border-radius: 8px;
                         position: absolute;
+                        overflow: hidden;
                     }
                     .scrollable {
-                        height: 100%;
+                        height: calc(100% - 1.3rem);
                         width: 100%;
                         overflow-y: auto;
+                        box-sizing: border-box;
+                        padding: 0 12px;
                     }
                     h1 {
-                        margin-bottom: 0;
+                        margin: 0;
                     }
                     .step-id-label {
                         font-size: small;
+                    }
+                    .modal-actions {
+                        position: absolute;
+                        bottom: 0.3rem;
+                        left: 0;
+                        text-align: center;
+                        padding-top: 0.3rem;
+                        width: 100%;
+                        border-top: 1px solid #BBBBBB;
                     }
                 </style>
                 <section class="step-editor-container">
@@ -81,11 +93,11 @@
                             <br />
                             <span>TBD</span>
                         </p>
+                    </div>
 
-                        <div>
-                            <button onclick="this.closest('modal-screen').notify('save');">Save Changes</button>
-                            <button onclick="this.closest('modal-screen').sendHideRequest();">Discard</button>
-                        </div>
+                    <div class="modal-actions">
+                        <button onclick="this.closest('modal-screen').notify('save');">Save Changes</button>
+                        <button onclick="this.closest('modal-screen').sendHideRequest();">Discard</button>
                     </div>
                 </section>
             </modal-screen>
